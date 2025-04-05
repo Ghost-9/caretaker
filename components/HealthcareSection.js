@@ -1,11 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function HealthcareSection() {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-12 bg-gray-100">
-      {/* Left Column: Trust Expertise and Helper Service */}
+      {/* Left Column */}
       <div className="space-y-8">
         <motion.div
           className="bg-green-900 text-white p-6 rounded-lg shadow-md"
@@ -26,18 +27,26 @@ export default function HealthcareSection() {
             <p className="text-yellow-300">Higher patient recovery rates with our helpers</p>
           </div>
         </motion.div>
-        <motion.img
-          src="/healthcare-image1.jpg"
-          alt="Healthcare team assisting patient"
-          className="w-full rounded-lg shadow-lg object-cover h-64 md:h-80"
+
+        {/* Image with animation */}
+        <motion.div
+          className="relative w-full h-64 md:h-80 rounded-lg shadow-lg overflow-hidden"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-        />
+        >
+          <Image
+            src="/healthcare-image1.jpg"
+            alt="Healthcare team assisting patient"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </motion.div>
       </div>
 
-      {/* Right Column: Professional Trust and Empowerment */}
+      {/* Right Column */}
       <div className="space-y-8">
         <motion.div
           className="bg-yellow-300 text-green-900 p-6 rounded-lg shadow-md"
@@ -53,17 +62,22 @@ export default function HealthcareSection() {
             assistance. Benefit from tailored care plans and expert guidance for a smoother recovery.
           </p>
           <div className="mt-4 flex items-center space-x-4">
-            <img
-              src="/handshake.jpg"
-              alt="Handshake symbolizing trust"
-              className="w-20 h-20 rounded-full object-cover"
-            />
+            <div className="w-20 h-20 relative">
+              <Image
+                src="/handshake.jpg"
+                alt="Handshake symbolizing trust"
+                fill
+                className="rounded-full object-cover"
+                sizes="80px"
+              />
+            </div>
             <div>
               <p className="font-medium">Old Age Caring Team</p>
               <p className="text-sm">Over 500 satisfied families served</p>
             </div>
           </div>
         </motion.div>
+
         <motion.div
           className="bg-yellow-200 text-green-900 p-6 rounded-lg shadow-md"
           initial={{ opacity: 0, y: 20 }}
@@ -78,17 +92,22 @@ export default function HealthcareSection() {
             recovery time. Join thousands of patients who’ve regained independence with our support.
           </p>
           <div className="flex space-x-4 mt-4">
-            <img
-              src="/health-image1.jpg"
-              alt="Happy patient with helper"
-              className="w-20 h-20 rounded-full object-cover"
-            />
-            <img
-              src="/health-image2.jpg"
-              alt="Healthcare professional"
-              className="w-20 h-20 rounded-full object-cover"
-            />
+            {[
+              { src: '/health-image1.jpg', alt: 'Happy patient with helper' },
+              { src: '/health-image2.jpg', alt: 'Healthcare professional' },
+            ].map((img, i) => (
+              <div key={i} className="w-20 h-20 relative">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="rounded-full object-cover"
+                  sizes="80px"
+                />
+              </div>
+            ))}
           </div>
+
           <motion.a
             href="#contact"
             className="mt-6 inline-block px-6 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors duration-300"
