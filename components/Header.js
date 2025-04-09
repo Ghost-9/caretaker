@@ -1,97 +1,132 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 
-export default function Header() {
+function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
+  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  
+  // Handle scroll effect
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Determine if scrolled for shadow effect
+      if (currentScrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+      
+      // Determine visibility based on scroll direction
+      // Show header immediately on any upward scroll
+      if (currentScrollY > lastScrollY) {
+        setVisible(false); // Scrolling down - hide header
+      } else if (currentScrollY < lastScrollY) {
+        setVisible(true); // Scrolling up - show header immediately
+      }
+      
+      lastScrollY = currentScrollY;
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  // Close mobile menu when screen size changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mobileMenuOpen]);
+  
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <svg className="h-8 w-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-              <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-green-500 bg-clip-text text-transparent">CareTaker</span>
-            </Link>
-          </div>
-
-          {/* Desktop Navigation - Only visible on medium (md) screens and above */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {['Health', 'About Us', 'Team', 'Story', 'Blog'].map((item) => (
-              <Link 
-                key={item} 
-                href={`#${item.toLowerCase().replace(' ', '')}`}
-                className="font-medium text-gray-600 hover:text-green-600 transition duration-150 ease-in-out relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            ))}
-          </nav>
-
-          {/* Contact Button - Only visible on medium (md) screens and above */}
-          <div className="hidden md:block">
-            <Link 
-              href="#contact"
-              className="px-5 py-2.5 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-full hover:from-green-700 hover:to-green-600 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-            >
-              Contact Us
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button - Only visible on small screens (below md breakpoint) */}
-          <div className="md:hidden flex items-center">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-green-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
-              aria-expanded="false"
-              onClick={toggleMenu}
-            >
-              <span className="sr-only">Open main menu</span>
-              {mobileMenuOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
-        </div>
+    <motion.div 
+      className={`header fixed top-0 left-0 right-0 z-50 flex flex-col md:flex-row justify-between items-center p-3 bg-white ${scrolled ? 'shadow-md' : 'shadow-sm'} transition-all duration-300`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
+      {/* Logo */}
+      <div className="logo mb-3 md:mb-0">
+        <img src="/logo.webp" alt="Company Logo" className="h-6 md:h-8" />
       </div>
-
-      {/* Mobile Menu - Only appears when mobileMenuOpen is true and only on small screens */}
-      {mobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-b-lg">
-            {['Health', 'About Us', 'Team', 'Story', 'Blog'].map((item) => (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '')}`}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600 hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item}
-              </Link>
-            ))}
-            <Link
-              href="#contact"
-              className="block w-full text-center mt-3 px-4 py-2 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-full hover:from-green-700 hover:to-green-600"
-              onClick={() => setMobileMenuOpen(false)}
+      
+      {/* Navigation */}
+      <div className="nav-links hidden md:flex space-x-6 text-gray-700">
+        <a href="#" className="hover:text-blue-600 transition-colors">Home</a>
+        <a href="#" className="hover:text-blue-600 transition-colors">Book</a>
+        <a href="#" className="hover:text-blue-600 transition-colors">About</a>
+        <a href="#" className="hover:text-blue-600 transition-colors">Story</a>
+        <a href="#" className="hover:text-blue-600 transition-colors">Pricing</a>
+      </div>
+      
+      {/* Contact Button */}
+      <div className="contact hidden md:block mt-3 md:mt-0">
+        <motion.button 
+          className="bg-black text-white px-4 py-1.5 rounded-lg hover:bg-white hover:text-black transition-colors border border-black"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Contact Us
+        </motion.button>
+      </div>
+      
+      {/* Mobile Menu Button */}
+      <div className="md:hidden absolute top-3 right-3">
+        <button 
+          className="text-gray-700 focus:outline-none"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+      </div>
+      
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            className="md:hidden absolute top-14 left-0 right-0 bg-white shadow-md py-3 px-6 flex flex-col space-y-3 text-gray-700"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Home</a>
+            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Book</a>
+            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">About</a>
+            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Story</a>
+            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Pricing</a>
+            <motion.button 
+              className="bg-black text-white px-4 py-1.5 rounded-lg hover:bg-white hover:text-black transition-colors border border-black w-full mt-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Contact Us
-            </Link>
-          </div>
-        </div>
-      )}
-    </header>
-  );
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
 }
+
+export default Header
