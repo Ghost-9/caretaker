@@ -9,6 +9,9 @@
     "lint": "next lint",
     "deploy": "next build && gh-pages -d out"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
