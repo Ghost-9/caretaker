@@ -35,7 +35,7 @@ export default function HeroSection() {
 
         {/* Trainer Avatars */}
         <div className="flex items-center space-x-4 mt-4">
-          {['trainer1.jpg', 'trainer2.jpg'].map((src, i) => (
+          {['trainer1.avif', 'trainer2.avif'].map((src, i) => (
             <div key={i} className="w-10 h-10 relative">
               <Image
                 src={`/${src}`}
@@ -54,7 +54,7 @@ export default function HeroSection() {
       <div className="md:w-1/2 mt-8 md:mt-0">
         <div className="relative w-full h-64 md:h-96 rounded-lg shadow-lg overflow-hidden">
           <Image
-            src="/hero-image.jpg"
+            src="/hero-image.avif"
             alt="Elderly exercising"
             fill
             className="object-cover rounded-lg"

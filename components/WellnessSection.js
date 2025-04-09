@@ -35,7 +35,7 @@ export default function WellnessSection() {
         >
           <div className="w-32 h-32 relative">
             <Image
-              src="/care-image1.jpg"
+              src="/care-image1.avif"
               alt="Care team with patient"
               fill
               className="rounded-lg object-cover shadow-md"
@@ -78,7 +78,7 @@ export default function WellnessSection() {
             <span className="text-xl font-medium">24+ Departments</span>
             <div className="w-20 h-20 relative">
               <Image
-                src="/wellness-image1.jpg"
+                src="/wellness-image1.avif"
                 alt="Wellness department"
                 fill
                 className="rounded-full object-cover"
@@ -105,7 +105,7 @@ export default function WellnessSection() {
             <span className="text-xl font-medium">6AM - 6PM</span>
             <div className="w-20 h-20 relative">
               <Image
-                src="/wellness-image2.jpg"
+                src="/wellness-image2.avif"
                 alt="Healthy lifestyle"
                 fill
                 className="rounded-full object-cover"

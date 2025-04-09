@@ -37,7 +37,7 @@ export default function HealthcareSection() {
           viewport={{ once: true }}
         >
           <Image
-            src="/healthcare-image1.jpg"
+            src="/healthcare-image1.avif"
             alt="Healthcare team assisting patient"
             fill
             className="object-cover"
@@ -64,7 +64,7 @@ export default function HealthcareSection() {
           <div className="mt-4 flex items-center space-x-4">
             <div className="w-20 h-20 relative">
               <Image
-                src="/handshake.jpg"
+                src="/handshake.avif"
                 alt="Handshake symbolizing trust"
                 fill
                 className="rounded-full object-cover"
@@ -93,8 +93,8 @@ export default function HealthcareSection() {
           </p>
           <div className="flex space-x-4 mt-4">
             {[
-              { src: '/health-image1.jpg', alt: 'Happy patient with helper' },
-              { src: '/health-image2.jpg', alt: 'Healthcare professional' },
+              { src: '/health-image1.avif', alt: 'Happy patient with helper' },
+              { src: '/health-image2.avif', alt: 'Healthcare professional' },
             ].map((img, i) => (
               <div key={i} className="w-20 h-20 relative">
                 <Image
