@@ -21,7 +21,6 @@ function Header() {
       } else {
         setScrolled(false);
       }
-      
       // Determine visibility based on scroll direction
       // Show header immediately on any upward scroll
       if (currentScrollY > lastScrollY) {
@@ -51,7 +50,7 @@ function Header() {
   
   return (
     <motion.div 
-      className={`header fixed top-0 left-0 right-0 z-50 flex flex-col md:flex-row justify-between items-center p-3 bg-white ${scrolled ? 'shadow-md' : 'shadow-sm'} transition-all duration-300`}
+      className={`header fixed top-0 left-0 right-0 z-50 flex flex-col md:flex-row justify-between items-center p-3 ${scrolled ? 'bg-white bg-opacity-90 shadow-md' : 'bg-transparent'} transition-all duration-300`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -62,18 +61,18 @@ function Header() {
       </div>
       
       {/* Navigation */}
-      <div className="nav-links hidden md:flex space-x-6 text-gray-700">
-        <a href="#" className="hover:text-blue-600 transition-colors">Home</a>
-        <a href="#" className="hover:text-blue-600 transition-colors">Book</a>
-        <a href="#" className="hover:text-blue-600 transition-colors">About</a>
-        <a href="#" className="hover:text-blue-600 transition-colors">Story</a>
-        <a href="#" className="hover:text-blue-600 transition-colors">Pricing</a>
+      <div className="nav-links hidden md:flex space-x-6 text-gray-800 font-medium">
+        <a href="#" className="hover:text-white transition-colors">Home</a>
+        <a href="#" className="hover:text-white transition-colors">Book</a>
+        <a href="#" className="hover:text-white transition-colors">About</a>
+        <a href="#" className="hover:text-white transition-colors">Story</a>
+        <a href="#" className="hover:text-white transition-colors">Pricing</a>
       </div>
       
       {/* Contact Button */}
       <div className="contact hidden md:block mt-3 md:mt-0">
         <motion.button 
-          className="bg-black text-white px-4 py-1.5 rounded-lg hover:bg-white hover:text-black transition-colors border border-black"
+          className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors text-lg"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -84,7 +83,7 @@ function Header() {
       {/* Mobile Menu Button */}
       <div className="md:hidden absolute top-3 right-3">
         <button 
-          className="text-gray-700 focus:outline-none"
+          className="text-gray-800 focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -104,19 +103,19 @@ function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
-            className="md:hidden absolute top-14 left-0 right-0 bg-white shadow-md py-3 px-6 flex flex-col space-y-3 text-gray-700"
+            className="md:hidden absolute top-14 left-0 right-0 bg-white bg-opacity-95 shadow-md py-3 px-6 flex flex-col space-y-3 text-gray-800"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Home</a>
-            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Book</a>
-            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">About</a>
-            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Story</a>
-            <a href="#" className="hover:text-blue-600 transition-colors py-1.5">Pricing</a>
+            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Home</a>
+            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Book</a>
+            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">About</a>
+            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Story</a>
+            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Pricing</a>
             <motion.button 
-              className="bg-black text-white px-4 py-1.5 rounded-lg hover:bg-white hover:text-black transition-colors border border-black w-full mt-2"
+              className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors text-lg w-full mt-2"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
