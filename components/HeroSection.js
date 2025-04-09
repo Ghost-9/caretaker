@@ -8,7 +8,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/hero-image.jpg" 
+          src="/hero-image.avif" 
           alt="Background" 
           className="w-full h-full object-cover opacity-80"
         />
