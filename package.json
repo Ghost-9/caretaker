@@ -8,20 +8,27 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "next build && gh-pages -d out"
-
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "export-to-csv": "^1.4.0",
     "framer-motion": "^12.6.3",
+    "fs": "^0.0.1-security",
+    "googleapis": "^148.0.0",
+    "http2": "^3.3.6",
     "lucide-react": "^0.487.0",
+    "net": "^1.0.2",
     "next": "15.2.4",
     "react": "^19.0.0",
+    "react-csv": "^2.2.2",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "tailwind-merge": "^3.1.0",
-    "tw-animate-css": "^1.2.5"
+    "tls": "^0.0.1",
+    "tw-animate-css": "^1.2.5",
+    "twilio": "^5.5.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

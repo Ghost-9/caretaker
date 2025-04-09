@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import WellnessSection from '../components/WellnessSection';
 import HealthcareSection from '../components/HealthcareSection';
+import FormSection from '../components/FormSection';
 
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         <HeroSection />
         <WellnessSection />
         <HealthcareSection />
+        <FormSection />
       </main>
     </div>
   );
