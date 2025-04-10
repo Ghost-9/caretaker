@@ -1,20 +1,21 @@
 'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
   return (
     <div className="w-full min-h-screen relative text-gray-800">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/hero-image.avif" 
+          src="/hero-image.jpg" 
           alt="Background" 
           className="w-full h-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-white bg-opacity-60"></div>
       </div>
-      
       <div className="container mx-auto px-4 py-24 relative z-10 flex flex-col md:flex-row items-center justify-between">
         {/* Left side - Information */}
         <div className="w-full md:w-3/5 mb-16 md:mb-0">
@@ -94,7 +95,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

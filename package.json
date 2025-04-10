@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "optimize:images": "node scripts/convert-images.js",
-    "build": "npm run optimize:images && next build",
+    "build:optimized": "npm run optimize:images && next build",
+    "build:server": "next build --turbo",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "next build && gh-pages -d out"

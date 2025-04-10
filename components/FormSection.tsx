@@ -3,7 +3,14 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-export default function FormSection() {
+const FormSection: React.FC = () => {
+  const services = [
+    { title: "Hourly Care", note: "Ideal for hospital visits or temporary support", rate: "₹XYZ/hour" },
+    { title: "6-Hour Care", note: "Perfect for morning/evening routine assistance", rate: "+20% premium of daily rate" },
+    { title: "Half-Day & Full-Day", note: "Great for full hospital coverage", rate: "Market Rate (MRP)" },
+    { title: "Monthly & Long-Term", note: "15 Days: 10–15% Off\n30 Days: Up to 20% Off", rate: "Discounted Plans" },
+  ];
+
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
@@ -15,7 +22,9 @@ export default function FormSection() {
         viewport={{ once: true }}
       >
         <h1 className="text-4xl font-bold text-blue-800">Compassionate Hospital Attendants, Just a Click Away</h1>
-        <p className="mt-4 text-lg">Hire trained medical attendants to assist your loved ones at hospitals or homes — by the hour, day, or month.</p>
+        <p className="mt-4 text-lg">
+          Hire trained medical attendants to assist your loved ones at hospitals or homes — by the hour, day, or month.
+        </p>
         <div className="mt-6 flex justify-center gap-4">
           <motion.button
             className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700"
@@ -50,12 +59,7 @@ export default function FormSection() {
       >
         <h2 className="text-3xl font-semibold text-center mb-6">Tailored Care, Trusted Attendants</h2>
         <div className="grid gap-6 md:grid-cols-2">
-          {[
-            { title: "Hourly Care", note: "Ideal for hospital visits or temporary support", rate: "₹XYZ/hour" },
-            { title: "6-Hour Care", note: "Perfect for morning/evening routine assistance", rate: "+20% premium of daily rate" },
-            { title: "Half-Day & Full-Day", note: "Great for full hospital coverage", rate: "Market Rate (MRP)" },
-            { title: "Monthly & Long-Term", note: "15 Days: 10–15% Off\n30 Days: Up to 20% Off", rate: "Discounted Plans" },
-          ].map((s, idx) => (
+          {services.map((s, idx) => (
             <motion.div
               key={idx}
               className="border rounded-2xl p-4 shadow-sm hover:shadow-md"
@@ -155,4 +159,6 @@ export default function FormSection() {
       </motion.section>
     </main>
   );
-}
+};
+
+export default FormSection;

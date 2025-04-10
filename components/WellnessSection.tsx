@@ -3,8 +3,9 @@
 import { motion } from 'framer-motion';
 import { PlayCircle } from 'lucide-react';
 import Image from 'next/image';
+import React from 'react';
 
-export default function WellnessSection() {
+const WellnessSection: React.FC = () => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-12 bg-gray-50">
       {/* Left Column */}
@@ -35,7 +36,7 @@ export default function WellnessSection() {
         >
           <div className="w-32 h-32 relative">
             <Image
-              src="/care-image1.avif"
+              src="/care-image1.jpg"
               alt="Care team with patient"
               fill
               className="rounded-lg object-cover shadow-md"
@@ -78,7 +79,7 @@ export default function WellnessSection() {
             <span className="text-xl font-medium">24+ Departments</span>
             <div className="w-20 h-20 relative">
               <Image
-                src="/wellness-image1.avif"
+                src="/wellness-image1.jpg"
                 alt="Wellness department"
                 fill
                 className="rounded-full object-cover"
@@ -105,7 +106,7 @@ export default function WellnessSection() {
             <span className="text-xl font-medium">6AM - 6PM</span>
             <div className="w-20 h-20 relative">
               <Image
-                src="/wellness-image2.avif"
+                src="/wellness-image2.jpg"
                 alt="Healthy lifestyle"
                 fill
                 className="rounded-full object-cover"
@@ -126,4 +127,6 @@ export default function WellnessSection() {
       </div>
     </section>
   );
-}
+};
+
+export default WellnessSection;

@@ -14,7 +14,7 @@ const convertToAvif = async () => {
   );
 
   for (const base of baseNames) {
-    const avifFile = `${base}.avif`;
+    const avifFile = `${base}.jpg`;
     const avifPath = path.join(directory, avifFile);
 
     if (fs.existsSync(avifPath)) {
@@ -33,10 +33,10 @@ const convertToAvif = async () => {
         const inputPath = path.join(directory, `${base}${ext}`);
         if (fs.existsSync(inputPath)) {
           await sharp(inputPath)
-            .avif({ quality: 50 })
+            .jpg({ quality: 50 })
             .toFile(avifPath);
           fs.unlinkSync(inputPath);
-          console.log(`Converted and deleted: ${base}${ext} → ${base}.avif`);
+          console.log(`Converted and deleted: ${base}${ext} → ${base}.jpg`);
           break; // Once converted, don't keep checking
         }
       }

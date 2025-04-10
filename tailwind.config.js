@@ -16,10 +16,10 @@ module.exports = {
   sans: ['"Inter", sans-serif', "var(--font-geist-sans)", ...fontFamily.sans],
   mono: ["var(--font-geist-mono)", ...fontFamily.mono],
 },
-      fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
-      },
+      // fontFamily: {
+      //   sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+      //   mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+      // },
       // fontFamily: {
       //   sans: ['"Inter", sans-serif'],
       // },

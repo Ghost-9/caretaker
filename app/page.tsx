@@ -10,7 +10,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       <Header />
       <main>
-        <HeroSection />
+        {/* <HeroSection /> */}
         <WellnessSection />
         <HealthcareSection />
         <FormSection />

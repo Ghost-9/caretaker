@@ -2,8 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import React from 'react';
 
-export default function HealthcareSection() {
+const HealthcareSection: React.FC = () => {
+  const supportImages = [
+    { src: '/health-image1.jpg', alt: 'Happy patient with helper' },
+    { src: '/health-image2.jpg', alt: 'Healthcare professional' },
+  ];
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-12 bg-gray-100">
       {/* Left Column */}
@@ -28,7 +34,7 @@ export default function HealthcareSection() {
           </div>
         </motion.div>
 
-        {/* Image with animation */}
+        {/* Image */}
         <motion.div
           className="relative w-full h-64 md:h-80 rounded-lg shadow-lg overflow-hidden"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -37,7 +43,7 @@ export default function HealthcareSection() {
           viewport={{ once: true }}
         >
           <Image
-            src="/healthcare-image1.avif"
+            src="/healthcare-image1.jpg"
             alt="Healthcare team assisting patient"
             fill
             className="object-cover"
@@ -64,7 +70,7 @@ export default function HealthcareSection() {
           <div className="mt-4 flex items-center space-x-4">
             <div className="w-20 h-20 relative">
               <Image
-                src="/handshake.avif"
+                src="/handshake.jpg"
                 alt="Handshake symbolizing trust"
                 fill
                 className="rounded-full object-cover"
@@ -78,6 +84,7 @@ export default function HealthcareSection() {
           </div>
         </motion.div>
 
+        {/* Second Card */}
         <motion.div
           className="bg-yellow-200 text-green-900 p-6 rounded-lg shadow-md"
           initial={{ opacity: 0, y: 20 }}
@@ -92,10 +99,7 @@ export default function HealthcareSection() {
             recovery time. Join thousands of patients who’ve regained independence with our support.
           </p>
           <div className="flex space-x-4 mt-4">
-            {[
-              { src: '/health-image1.avif', alt: 'Happy patient with helper' },
-              { src: '/health-image2.avif', alt: 'Healthcare professional' },
-            ].map((img, i) => (
+            {supportImages.map((img, i) => (
               <div key={i} className="w-20 h-20 relative">
                 <Image
                   src={img.src}
@@ -120,4 +124,6 @@ export default function HealthcareSection() {
       </div>
     </section>
   );
-}
+};
+
+export default HealthcareSection;
