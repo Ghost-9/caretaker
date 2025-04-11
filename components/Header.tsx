@@ -1,7 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
 const Header: React.FC = () => {
@@ -47,15 +47,7 @@ const Header: React.FC = () => {
     >
       {/* Logo */}
       <div className="logo mb-3 md:mb-0">
-        {/* Use Next/Image if needed */}
-        {/* <Image
-          src="/logo.webp"
-          alt="Company Logo"
-          width={100}
-          height={40}
-          className="h-6 md:h-8"
-          priority
-        /> */}
+     
         <img src="/logo.webp" alt="Company Logo" className="h-6 md:h-8" />
       </div>
 

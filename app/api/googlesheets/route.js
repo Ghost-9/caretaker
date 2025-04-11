@@ -1,8 +1,13 @@
-// app/api/googlesheets/route.js
 import { google } from 'googleapis';
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
 
 export async function GET() {
   try {
+    const session = await getServerSession(authOptions)
+    if (!session) {
+      return Response.json({ error: "Unauthorized" }, { status: 401 })
+    }
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -16,18 +21,21 @@ export async function GET() {
 
     const result = await sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
-      range: 'Bookings!A2:F',
+      range: 'Bookings!A1:I',
     });
 
     const rows = result.data.values || [];
 
     const bookings = rows.map((row) => ({
-      name: row[0] || '',
-      phone: row[1] || '',
-      patient: row[2] || '',
-      plan: row[3] || '',
-      status: row[4] || '',
-      attendant: row[5] || '',
+      id: row[0] || '',
+      name: row[1] || '',
+      phone: row[2] || '',
+      patient: row[3] || '',
+      plan: row[4] || '',
+      status: row[5] || '',
+      attendant: row[6] || '',
+      datestamp: row[7] || '',
+      conditiontype : row[8] || '',
     }));
 
     return Response.json(bookings, { status: 200 });

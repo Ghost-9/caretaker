@@ -5,6 +5,8 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import toast, { Toaster } from "react-hot-toast"
+import { signIn } from "next-auth/react"
+export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -15,10 +17,19 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
     try {
-      await signInWithEmailAndPassword(auth, email, password)
-      toast.success("Welcome back! ✨")
-      // Redirect to /admin or wherever
-      window.location.href = "/admin"
+    const userCredetial =  await signInWithEmailAndPassword(auth, email, password)
+      const token = await userCredetial.user.getIdToken()
+      const result = await signIn("credentials", {
+        redirect: false,
+        token, 
+        callbackUrl: "/admin",
+      })
+      if (result?.ok) {
+        toast.success("Welcome back! ✨")
+        window.location.href = result.url || "/admin"
+      } else {
+        throw new Error("NextAuth login failed")
+      }
     } catch (err) {
       toast.error("Invalid credentials ❌")
       console.error("Login error:", err)

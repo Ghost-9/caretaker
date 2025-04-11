@@ -1,4 +1,5 @@
 import './globals.css';
+import { AuthBroadcastProvider } from './providers';
 
 export const metadata = {
   title: 'CareTaker - Your Trusted Healthcare Partner',
@@ -8,7 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+     <body>
+        <AuthBroadcastProvider />  
+        {children}
+      </body>
     </html>
   );
 }

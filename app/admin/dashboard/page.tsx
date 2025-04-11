@@ -1,30 +1,35 @@
+
+
+
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
 import AuthGuard from "@/components/auth-guard"
+import { Booking } from "@/types/booking"
+
 import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
-import rawData from "./data.json"
+ 
 
 
-const data = rawData as {
-  header: string;
-  id: number;
-  type: string;
-  status: string;
-  target: string;
-  limit: string;
-  reviewer: string;
-}[];
-export default function Page() {
+
+export default async function Dashboard ()  {
+  let bookings: Booking[] = [];
+
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const res = await fetch(`${baseUrl}/api/googlesheets`, { next: { revalidate: 300 } }); /// fetch bookings from the server with revalidation every 5 minutes
+    bookings = await res.json();
+  } catch (error) {
+    console.error("Failed to fetch bookings", error);
+  }
   return (
     <AuthGuard>
-
     <SidebarProvider
       style={
         {
@@ -43,7 +48,7 @@ export default function Page() {
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
-              <DataTable data={data} />
+              <DataTable data={bookings} />
             </div>
           </div>
         </div>

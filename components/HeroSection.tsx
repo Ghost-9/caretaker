@@ -1,8 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
-
 
 const HeroSection: React.FC = () => {
   return (

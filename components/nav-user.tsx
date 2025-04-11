@@ -1,5 +1,7 @@
 "use client"
 
+import { logout } from '@/lib/logout'
+
 import {
   IconCreditCard,
   IconDotsVertical,
@@ -98,7 +100,9 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={
+            logout
+            }> 
               <IconLogout />
               Log out
             </DropdownMenuItem>
