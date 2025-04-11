@@ -61,11 +61,11 @@ const Header: React.FC = () => {
 
       {/* Navigation */}
       <div className="nav-links hidden md:flex space-x-6 text-gray-800 font-medium">
-        <a href="#" className="hover:text-white transition-colors">Home</a>
-        <a href="#" className="hover:text-white transition-colors">Book</a>
-        <a href="#" className="hover:text-white transition-colors">About</a>
-        <a href="#" className="hover:text-white transition-colors">Story</a>
-        <a href="#" className="hover:text-white transition-colors">Pricing</a>
+        <a href="#" className="hover:text-blue-500 transition-colors">Home</a>
+        <a href="#" className="hover:text-blue-500 transition-colors">Book</a>
+        <a href="#" className="hover:text-blue-500 transition-colors">About</a>
+        <a href="#" className="hover:text-blue-500 transition-colors">Story</a>
+        <a href="#" className="hover:text-blue-500 transition-colors">Pricing</a>
       </div>
 
       {/* Contact Button */}
@@ -108,11 +108,11 @@ const Header: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Home</a>
-            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Book</a>
-            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">About</a>
-            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Story</a>
-            <a href="#" className="hover:text-white transition-colors py-1.5 font-medium">Pricing</a>
+            <a href="#" className="hover:text-blue-500 transition-colors py-1.5 font-medium">Home</a>
+            <a href="#" className="hover:text-blue-500 transition-colors py-1.5 font-medium">Book</a>
+            <a href="#" className="hover:text-blue-500 transition-colors py-1.5 font-medium">About</a>
+            <a href="#" className="hover:text-blue-500 transition-colors py-1.5 font-medium">Story</a>
+            <a href="#" className="hover:text-blue-500 transition-colors py-1.5 font-medium">Pricing</a>
             <motion.button
               className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors text-lg w-full mt-2"
               whileHover={{ scale: 1.02 }}

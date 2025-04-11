@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+
 
 const HeroSection: React.FC = () => {
   return (
@@ -10,8 +10,8 @@ const HeroSection: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/hero-image.jpg" 
-          alt="Background" 
+          src="../public/hero-image.jpg"
+          alt="Senior man doing yoga in a greenhouse environment" 
           className="w-full h-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-white bg-opacity-60"></div>
@@ -42,7 +42,7 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Book trained medical attendants or caretaker for your loved ones, at home or in hospitals -
-            available hourly, daily, or monthly.
+            available hourly, daily, or monthly. We also offer specialized senior wellness programs.
           </motion.p>
           <motion.div 
             className="flex flex-col sm:flex-row gap-6"
@@ -76,7 +76,7 @@ const HeroSection: React.FC = () => {
         >
           <div className="bg-white p-8 rounded-xl shadow-xl">
             <h3 className="text-2xl font-bold mb-4">Ready to get started?</h3>
-            <p className="text-gray-600 mb-6">Our professional attendants are available 24/7 to assist with your recovery needs.</p>
+            <p className="text-gray-600 mb-6">Our professional attendants are available 24/7 to assist with your recovery needs and senior wellness.</p>
             <div className="flex items-center mb-4">
               <div className="w-8 h-8 rounded-full bg-gray-200 mr-3"></div>
               <div>
@@ -84,11 +84,18 @@ const HeroSection: React.FC = () => {
                 <p className="text-sm text-gray-500">Always available</p>
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center mb-4">
               <div className="w-8 h-8 rounded-full bg-gray-200 mr-3"></div>
               <div>
                 <p className="font-medium">Certified Professionals</p>
                 <p className="text-sm text-gray-500">Trained & experienced</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <div className="w-8 h-8 rounded-full bg-gray-200 mr-3"></div>
+              <div>
+                <p className="font-medium">Wellness Programs</p>
+                <p className="text-sm text-gray-500">Yoga & senior fitness</p>
               </div>
             </div>
           </div>

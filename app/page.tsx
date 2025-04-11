@@ -3,6 +3,7 @@ import HeroSection from '../components/HeroSection';
 import WellnessSection from '../components/WellnessSection';
 import HealthcareSection from '../components/HealthcareSection';
 import FormSection from '../components/FormSection';
+import CostInfo from '@/components/cost-info';
 
 
 export default function Home() {
@@ -10,8 +11,9 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       <Header />
       <main>
-        {/* <HeroSection /> */}
+        <HeroSection />
         <WellnessSection />
+        <CostInfo/>
         <HealthcareSection />
         <FormSection />
       </main>
