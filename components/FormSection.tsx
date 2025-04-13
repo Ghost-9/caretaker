@@ -290,34 +290,178 @@ const FormSection: React.FC = () => {
 
       {/* Booking Form */}
       <motion.section
-        className="p-8 bg-blue-50"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+  className="p-12 bg-gradient-to-b from-blue-100 to-white"
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+>
+  <div className="max-w-xl mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
+      className="text-center mb-8"
+    >
+      <h2 className="text-4xl font-bold text-black">Book a Caregiver</h2>
+      <div className="h-1 w-20 bg-blue-500 mx-auto mt-3 mb-4 rounded-full"></div>
+      <p className="text-gray-600">Fill out the form below and we'll get back to you within 2 hours</p>
+    </motion.div>
+    
+    <motion.form 
+      className="bg-white p-8 rounded-2xl shadow-lg grid gap-5 border border-gray-100"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.6 }}
+    >
+      <div className="space-y-1">
+        <label htmlFor="fullname" className="text-sm font-medium text-gray-700 block">Full Name</label>
+        <motion.input 
+          whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+          transition={{ duration: 0.2 }}
+          type="text" 
+          id="fullname"
+          placeholder="Enter your full name" 
+          className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
+        />
+      </div>
+      
+      <div className="space-y-1">
+        <label htmlFor="phone" className="text-sm font-medium text-gray-700 block">Phone Number</label>
+        <motion.input 
+          whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+          transition={{ duration: 0.2 }}
+          type="tel" 
+          id="phone"
+          placeholder="Enter your contact number" 
+          className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
+        />
+      </div>
+      
+      <div className="space-y-1">
+        <label htmlFor="condition" className="text-sm font-medium text-gray-700 block">Patient Type / Condition</label>
+        <motion.input 
+          whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+          transition={{ duration: 0.2 }}
+          type="text" 
+          id="condition"
+          placeholder="Describe patient's condition briefly" 
+          className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
+        />
+      </div>
+      
+      <div className="space-y-1">
+        <label htmlFor="plan" className="text-sm font-medium text-gray-700 block">Select Plan</label>
+        <motion.select 
+          whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+          transition={{ duration: 0.2 }}
+          id="plan"
+          className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none appearance-none bg-white" 
+          onChange={(e) => {
+            const timeContainer = document.getElementById('timeSelectionContainer');
+            if (timeContainer && (e.target.value === 'hourly' || e.target.value === '6hour')) {
+              timeContainer.classList.remove('hidden');
+            } else if (timeContainer) {
+              timeContainer.classList.add('hidden');
+            }
+          }}
+        >
+          <option value="">Select your care plan</option>
+          <option value="hourly">Hourly</option>
+          <option value="6hour">6-Hour</option>
+          <option value="fullday">Full-Day</option>
+          <option value="monthly">Monthly</option>
+          <option value="custom">Custom</option>
+        </motion.select>
+      </div>
+      
+      {/* Time selection that appears only for hourly and 6-hour options */}
+      <motion.div 
+        id="timeSelectionContainer"
+        className="space-y-1 hidden"
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: 'auto' }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.3 }}
       >
-        <h2 className="text-xl font-semibold mb-4 text-center">Book a Caregiver</h2>
-        <form className="max-w-md mx-auto grid gap-4">
-          <input type="text" placeholder="Full Name" className="p-2 border rounded-md" />
-          <input type="tel" placeholder="Phone Number" className="p-2 border rounded-md" />
-          <input type="text" placeholder="Patient Type / Condition" className="p-2 border rounded-md" />
-          <select className="p-2 border rounded-md">
-            <option>Select Plan</option>
-            <option>Hourly</option>
-            <option>6-Hour</option>
-            <option>Full-Day</option>
-            <option>Monthly</option>
-          </select>
-          <motion.button
-            type="submit"
-            className="bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Submit Booking
-          </motion.button>
-        </form>
-      </motion.section>
+        <label htmlFor="startTime" className="text-sm font-medium text-gray-700 block">Preferred Time</label>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <motion.input 
+              whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+              transition={{ duration: 0.2 }}
+              type="time" 
+              id="startTime"
+              className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
+            />
+            <p className="text-xs text-gray-500 mt-1">Start Time</p>
+          </div>
+          <div>
+            <motion.input 
+              whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+              transition={{ duration: 0.2 }}
+              type="time" 
+              id="endTime"
+              className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
+            />
+            <p className="text-xs text-gray-500 mt-1">End Time</p>
+          </div>
+        </div>
+      </motion.div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-1">
+          <label htmlFor="startdate" className="text-sm font-medium text-gray-700 block">Start Date</label>
+          <motion.input 
+            whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+            transition={{ duration: 0.2 }}
+            type="date" 
+            id="startdate"
+            className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
+          />
+        </div>
+        
+        <div className="space-y-1">
+          <label htmlFor="enddate" className="text-sm font-medium text-gray-700 block">End Date</label>
+          <motion.input 
+            whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+            transition={{ duration: 0.2 }}
+            type="date" 
+            id="enddate"
+            className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
+          />
+        </div>
+      </div>
+      
+      <div className="space-y-1">
+        <label htmlFor="notes" className="text-sm font-medium text-gray-700 block">Special Instructions (Optional)</label>
+        <motion.textarea
+          whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+          transition={{ duration: 0.2 }}
+          id="notes"
+          rows={3}
+          placeholder="Any additional information we should know?"
+          className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none resize-none" 
+        />
+      </div>
+      
+      <div className="pt-4">
+        <motion.button
+          type="submit"
+          className="bg-gradient-to-r from-blue-600 to-blue-800 text-white w-full py-4 rounded-xl font-medium text-lg"
+          whileHover={{ scale: 1.03, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.2)" }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Book Your Caregiver
+        </motion.button>
+      </div>
+      
+      <p className="text-center text-sm text-gray-500 mt-2">
+        By submitting, you agree to our <span className="text-blue-600 hover:underline cursor-pointer">Terms of Service</span>
+      </p>
+    </motion.form>
+  </div>
+</motion.section>
 
       {/* Contact Section */}
       <motion.section
