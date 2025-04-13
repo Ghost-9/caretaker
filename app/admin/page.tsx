@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CSVLink } from 'react-csv';
-import AuthGuard from "@/components/auth-guard"
 
 // Booking type
 type Booking = {
@@ -58,7 +56,6 @@ export default function AdminDashboard() {
   };
 
   return (
-    <AuthGuard>
     <main className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-blue-50 text-blue-900'} min-h-screen px-4 py-10 md:px-10 transition-colors`}>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -97,7 +94,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* CSV Export */}
-        <CSVLink data={bookings} filename="bookings.csv">
+        {/* <CSVLink data={bookings} filename="bookings.csv">
           <button className="export-btn">Export to CSV</button>
         </CSVLink>
 
@@ -193,5 +190,5 @@ export default function AdminDashboard() {
         )}
       </AnimatePresence>
     </main>
-    </AuthGuard>  );
+  );
 }
