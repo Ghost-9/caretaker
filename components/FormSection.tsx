@@ -22,39 +22,88 @@ const FormSection: React.FC = () => {
     <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
       <motion.section
-        className="bg-blue-50 p-8 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <h1 className="text-4xl font-bold text-blue-800">Compassionate Hospital Attendants, Just a Click Away</h1>
-        <p className="mt-4 text-lg">
-          Hire trained medical attendants to assist your loved ones at hospitals or homes — by the hour, day, or month.
-        </p>
-        <div className="mt-6 flex justify-center gap-4">
-          <motion.button
-            className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Book a Caregiver
-          </motion.button>
-          <motion.button
-            className="border border-blue-600 text-blue-600 px-6 py-2 rounded-xl hover:bg-blue-50"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Request a Callback
-          </motion.button>
-        </div>
-        <div className="mt-6 flex justify-center gap-4 text-sm text-gray-600">
-          <span>✅ Verified Attendants</span>
-          <span>✅ Flexible Plans</span>
-          <span>✅ Trusted by Families</span>
-          <span>✅ Fast Replacements</span>
-        </div>
-      </motion.section>
+  className="bg-blue-50 py-12 px-8 text-center"
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+>
+  <motion.div
+    initial={{ opacity: 0, y: 15 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.2, duration: 0.7 }}
+    className="max-w-4xl mx-auto"
+  >
+    <h1 className="text-5xl font-bold text-black leading-tight">
+      Compassionate Hospital Attendants, 
+      <span className="block mt-2">Just a Click Away</span>
+    </h1>
+    
+    <div className="h-1 w-24 bg-black mx-auto my-6"></div>
+    
+    <p className="mt-6 text-xl text-black leading-relaxed max-w-3xl mx-auto">
+      Hire trained medical attendants to assist your loved ones at hospitals or homes — 
+      by the hour, day, or month.
+    </p>
+  </motion.div>
+  
+  <div className="mt-10 flex flex-wrap justify-center gap-4">
+    <motion.button
+      className="bg-black text-white px-8 py-3 rounded-xl hover:bg-blue-600 transition-colors duration-300 font-medium shadow-md"
+      whileHover={{ 
+        scale: 1.05,
+        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.2)"
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
+      Book a Caregiver
+    </motion.button>
+    <motion.button
+      className="bg-black text-white px-8 py-3 rounded-xl hover:bg-blue-600 transition-colors duration-300 font-medium shadow-md"
+      whileHover={{ 
+        scale: 1.05,
+        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.2)" 
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
+      Request a Callback
+    </motion.button>
+  </div>
+  
+  <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm">
+    <motion.div 
+      className="flex items-center bg-white px-5 py-2 rounded-full shadow-sm text-black font-medium"
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+    >
+      <span className="text-green-500 mr-2 text-lg">✓</span>
+      Verified Attendants
+    </motion.div>
+    
+    <motion.div 
+      className="flex items-center bg-white px-5 py-2 rounded-full shadow-sm text-black font-medium"
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+    >
+      <span className="text-green-500 mr-2 text-lg">✓</span>
+      Flexible Plans
+    </motion.div>
+    
+    <motion.div 
+      className="flex items-center bg-white px-5 py-2 rounded-full shadow-sm text-black font-medium"
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+    >
+      <span className="text-green-500 mr-2 text-lg">✓</span>
+      Trusted by Families
+    </motion.div>
+    
+    <motion.div 
+      className="flex items-center bg-white px-5 py-2 rounded-full shadow-sm text-black font-medium"
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+    >
+      <span className="text-green-500 mr-2 text-lg">✓</span>
+      Fast Replacements
+    </motion.div>
+  </div>
+</motion.section>
 
       {/* Services Section */}
       <motion.section
