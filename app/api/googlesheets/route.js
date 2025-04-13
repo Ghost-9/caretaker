@@ -1,13 +1,8 @@
 import { google } from 'googleapis';
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/lib/auth"
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 })
-    }
+ 
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,

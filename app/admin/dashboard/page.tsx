@@ -6,7 +6,6 @@ import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
-import AuthGuard from "@/components/auth-guard"
 import { Booking } from "@/types/booking"
 
 import {
@@ -37,7 +36,6 @@ export default async function Dashboard ()  {
     console.error("Failed to fetch bookings", error);
   }
   return (
-    <AuthGuard>
     <SidebarProvider
       style={
         {
@@ -62,6 +60,5 @@ export default async function Dashboard ()  {
         </div>
       </SidebarInset>
     </SidebarProvider>
-    </AuthGuard>
       )
 }
