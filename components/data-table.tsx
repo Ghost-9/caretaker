@@ -364,7 +364,7 @@ export function DataTable({
   )
 
   const dataIds = React.useMemo<UniqueIdentifier[]>(
-    () => data?.map(({ id }) => id) || [],
+    () => Array.isArray(data) ? data.map(({ id }) => id) : [],
     [data]
   )
 

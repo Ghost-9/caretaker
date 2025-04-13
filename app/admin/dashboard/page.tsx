@@ -13,6 +13,7 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
+import { json } from "stream/consumers"
 
  
 
@@ -23,8 +24,15 @@ export default async function Dashboard ()  {
 
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/googlesheets`, { next: { revalidate: 300 } }); /// fetch bookings from the server with revalidation every 5 minutes
-    bookings = await res.json();
+    const res = await fetch(`${baseUrl}/api/googlesheets`
+      , { next: { revalidate: 300 } }
+        )    ;/// fetch bookings from the server with revalidation every 5 minutes
+  const json = await res.json();
+    if (Array.isArray(json)) {
+      bookings = json
+    } else {
+      console.warn("Non-array response")
+    }
   } catch (error) {
     console.error("Failed to fetch bookings", error);
   }
@@ -48,7 +56,7 @@ export default async function Dashboard ()  {
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
-              <DataTable data={bookings} />
+              <DataTable data={bookings || []} />
             </div>
           </div>
         </div>
