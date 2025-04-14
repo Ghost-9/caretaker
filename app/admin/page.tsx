@@ -2,16 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Booking,Attendant } from '@/types/booking';
 
-// Booking type
-type Booking = {
-  name: string;
-  phone: string;
-  patient: string;
-  plan: string;
-  status: string;
-  attendant: string;
-};
+
 
 export default function AdminDashboard() {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -21,12 +14,16 @@ export default function AdminDashboard() {
   const [selectedBooking, setSelectedBooking] = useState<number | null>(null);
   const [attendantName, setAttendantName] = useState('');
 
+ 
+
   useEffect(() => {
     const fetchBookings = async () => {
       try {
         const res = await fetch('/api/googlesheets');
-        const data = await res.json();
-        setBookings(data);
+        const data: { bookings: Booking[], attendants: Attendant[] } = await res.json();
+        console.log('Fetched bookings:', data);
+        const bookingList = data.bookings;
+        setBookings(bookingList);
       } catch (err) {
         console.error('Failed to fetch bookings:', err);
       }
@@ -35,12 +32,14 @@ export default function AdminDashboard() {
     fetchBookings();
   }, []);
 
-  const filtered = bookings.filter((b) =>
-    (b.name.toLowerCase().includes(search.toLowerCase()) ||
-      b.phone.includes(search) ||
-      b.plan.toLowerCase().includes(search.toLowerCase())) &&
-    (filterStatus ? b.status === filterStatus : true)
-  );
+  const filtered = Array.isArray(bookings)
+  ? bookings.filter((b) =>
+      (b.name.toLowerCase().includes(search.toLowerCase()) ||
+        b.phone.includes(search) ||
+        b.plan.toLowerCase().includes(search.toLowerCase())) &&
+      (filterStatus ? b.status === filterStatus : true)
+    )
+  : [];
 
   const handleAssign = () => {
     if (attendantName && selectedBooking !== null) {
@@ -119,7 +118,7 @@ export default function AdminDashboard() {
                 >
                   <td className="px-4 py-3">{b.name}</td>
                   <td className="px-4 py-3">{b.phone}</td>
-                  <td className="px-4 py-3">{b.patient}</td>
+                  <td className="px-4 py-3">{b.currentcare}</td>
                   <td className="px-4 py-3">{b.plan}</td>
                   <td className={`px-4 py-3 font-medium ${b.status === 'Assigned' ? 'text-green-600' : 'text-yellow-600'}`}>{b.status}</td>
                   <td className="px-4 py-3">{b.attendant}</td>

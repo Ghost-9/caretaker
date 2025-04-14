@@ -31,8 +31,9 @@ const nextConfig: NextConfig = {
       source: "/(.*)",
       headers: [
         {
+          //TODO - add a nonce to the CSP header and Cache Control Revalidate later
           key: "Cache-Control",
-          value: "public, max-age=31536000, immutable",
+          value: "no-store, no-cache, must-revalidate, proxy-revalidate",
         },
         // {
         //   key: "Content-Security-Policy",

@@ -6,8 +6,7 @@ import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
-import { Booking } from "@/types/booking"
-
+import { Attendant, Booking } from "@/types/booking"
 import {
   SidebarInset,
   SidebarProvider,
@@ -19,15 +18,15 @@ import {
 
 export default async function Dashboard ()  {
   let bookings: Booking[] = [];
+  let att: Attendant[] = [];
 
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/googlesheets`
-      , { next: { revalidate: 300 } }
-        )    ;/// fetch bookings from the server with revalidation every 5 minutes
-  const json = await res.json();
-    if (Array.isArray(json)) {
-      bookings = json
+    const res = await fetch(`${baseUrl}/api/googlesheets`, { next: { revalidate: 300 } }); /// fetch bookings from the server with revalidation every 5 minutes
+    const json: { bookings: Booking[], attendant: Attendant[] } = await res.json();
+    if (Array.isArray(json.bookings)) {
+      bookings = json.bookings;
+    
     } else {
       console.warn("Non-array response")
     }
@@ -50,10 +49,10 @@ export default async function Dashboard ()  {
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
               <SectionCards  data={bookings|| []}/>
-              <div className="px-4 lg:px-6">
+              {/* <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
-              </div>
-              <DataTable data={bookings || []} />
+              </div> */}
+              <DataTable data={bookings || []} attendantBooking={att || []} />
             </div>
           </div>
         </div>

@@ -21,6 +21,9 @@ import {
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import {
+  IconCheck,
+  IconCheckbox,
+  IconChecks,
   IconChevronDown,
   IconChevronLeft,
   IconChevronRight,
@@ -28,6 +31,7 @@ import {
   IconChevronsRight,
   IconCircleCheckFilled,
   IconDotsVertical,
+  IconDrone,
   IconGripVertical,
   IconLayoutColumns,
   IconLoader,
@@ -106,7 +110,8 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
-import {bookingSchema} from '@/types/booking'
+import {attendantSchema, bookingSchema} from '@/types/booking'
+import { Check } from "lucide-react"
  
 
 // Create a separate component for the drag handle
@@ -162,20 +167,42 @@ const columns: ColumnDef<z.infer<typeof bookingSchema>>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "header",
-    header: "Header",
+    accessorKey: "patient",
+    header: "Patient",
     cell: ({ row }) => {
       return <TableCellViewer item={row.original} />
     },
     enableHiding: false,
   },
   {
-    accessorKey: "type",
-    header: "Section Type",
+    accessorKey: "phone",
+    header: "Phone",
+    cell: ({ row }) => (
+      <div className="w-24">
+        <Badge variant="outline" className="text-muted-foreground px-1.5">
+          {row.original.phone}
+        </Badge>
+      </div>
+      )
+  },
+  {
+    accessorKey: "care",
+    header: "Current Care",
     cell: ({ row }) => (
       <div className="w-32">
+        <Badge variant="outline" className= "text-muted-foreground px-1.5" >
+          {row.original.currentcare}
+        </Badge>
+      </div>
+    ),
+  },
+  {
+    accessorKey: "plan",
+    header: "Care Plan",
+    cell: ({ row }) => (
+      <div className="w-12">
         <Badge variant="outline" className="text-muted-foreground px-1.5">
-          {row.original.conditiontype}
+          {row.original.plan}
         </Badge>
       </div>
     ),
@@ -185,87 +212,139 @@ const columns: ColumnDef<z.infer<typeof bookingSchema>>[] = [
     header: "Status",
     cell: ({ row }) => (
       <Badge variant="outline" className="text-muted-foreground px-1.5">
-        {row.original.status === "Done" ? (
+        {row.original.status === "Completed" ? (
           <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
-        ) : (
-          <IconLoader />
+        ) : row.original.status === "Assigned" ? (
+            <IconCheckbox
+              className="
+         green-500 dark:fill-green-400"
+              />
+         
+        ) : row.original.status === "Cancelled" ? (
+          (
+            <IconCircleCheckFilled className="fill-red-500 dark:fill-red-400 border-red-400" />
+          )
+       
+      )
+          : (
+                <IconLoader
+                  // animate only on hover
+                  className="fill-yellow-500 dark:fill-yellow-400 *:hover:animate-spin
+                  "
+                />
         )}
         {row.original.status}
       </Badge>
     ),
   },
   {
-    accessorKey: "target",
-    header: () => <div className="w-full text-right">Target</div>,
+    accessorKey: "datestamp",
+    header: "Booking Duration",
     cell: ({ row }) => (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-            loading: `Saving ${row.original.name}`,
-            success: "Done",
-            error: "Error",
-          })
-        }}
-      >
-        <Label htmlFor={`${row.original.id}-target`} className="sr-only">
-          Target
-        </Label>
-        <Input
-          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-          defaultValue={row.original.plan}
-          id={`${row.original.id}-target`}
-        />
-      </form>
+      <div className="w-32">
+        <Badge variant="outline" className="text-muted-foreground px-1.5">
+          {row.original.datestamp}
+        </Badge>
+      </div>
     ),
   },
   {
-    accessorKey: "limit",
-    header: () => <div className="w-full text-right">Limit</div>,
+    accessorKey: "conditiontype",
+    header: "Admission Type",
     cell: ({ row }) => (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
-            loading: `Saving ${row.original.name}`,
-            success: "Done",
-            error: "Error",
-          })
-        }}
-      >
-        <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
-          Limit
-        </Label>
-        <Input
-          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-          defaultValue={row.original.datestamp}
-          id={`${row.original.id}-limit`}
-        />
-      </form>
+      <div className="w-32">
+        <Badge variant="outline" className="text-muted-foreground px-1.5">
+          {row.original.conditiontype}
+        </Badge>
+      </div>
     ),
   },
   {
-    accessorKey: "reviewer",
-    header: "Reviewer",
+    accessorKey: "totalcharge",
+    header: "Assist Charge",
+    cell: ({ row }) => (
+      <div className="w-24">
+        <Badge variant="outline" className="text-muted-foreground px-1.5 text-bold">
+        ₹{row.original.totalcharge}
+        </Badge>
+      </div>
+    ),
+  },
+
+  // {
+  //   accessorKey: "target",
+  //   header: () => <div className="w-full text-right">Target</div>,
+  //   cell: ({ row }) => (
+  //     <form
+  //       onSubmit={(e) => {
+  //         e.preventDefault()
+  //         toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
+  //           loading: `Saving ${row.original.name}`,
+  //           success: "Done",
+  //           error: "Error",
+  //         })
+  //       }}
+  //     >
+  //       <Label htmlFor={`${row.original.id}-target`} className="sr-only">
+  //         Target
+  //       </Label>
+  //       <Input
+  //         className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+  //         defaultValue={row.original.plan}
+  //         id={`${row.original.id}-target`}
+  //       />
+  //     </form>
+  //   ),
+  // },
+  // {
+  //   accessorKey: "limit",
+  //   header: () => <div className="w-full text-right">Limit</div>,
+  //   cell: ({ row }) => (
+  //     <form
+  //       onSubmit={(e) => {
+  //         e.preventDefault()
+  //         toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
+  //           loading: `Saving ${row.original.name}`,
+  //           success: "Done",
+  //           error: "Error",
+  //         })
+  //       }}
+  //     >
+  //       <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
+  //         Limit
+  //       </Label>
+  //       <Input
+  //         className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+  //         defaultValue={row.original.datestamp}
+  //         id={`${row.original.id}-limit`}
+  //       />
+  //     </form>
+  //   ),
+  // },
+  {
+    accessorKey: "assignee",
+    header: "Assignee",
     cell: ({ row }) => {
       const isAssigned = row.original.attendant !== "Assign attendant"
 
       if (isAssigned) {
         return row.original.attendant
+      } else {
+       
       }
 
       return (
         <>
-          <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
+          <Label htmlFor={`${row.original.id}-assignee`} className="sr-only">
             Reviewer
           </Label>
           <Select>
             <SelectTrigger
               className="w-38 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
               size="sm"
-              id={`${row.original.id}-reviewer`}
+              id={`${row.original.id}-assignee`}
             >
-              <SelectValue placeholder="Assign reviewer" />
+              <SelectValue placeholder="Assign assignee" />
             </SelectTrigger>
             <SelectContent align="end">
               <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
@@ -331,8 +410,10 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof bookingSchema>> }) {
 
 export function DataTable({
   data: initialData,
+  attendantBooking : attendantBooking,
 }: {
-  data: z.infer<typeof bookingSchema>[]
+    data: z.infer<typeof bookingSchema>[]
+    attendantBooking?: z.infer<typeof attendantSchema>[]
 }) {
   const [data, setData] = React.useState(() => initialData)
   const [rowSelection, setRowSelection] = React.useState({})
@@ -433,7 +514,7 @@ export function DataTable({
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 <IconLayoutColumns />
-                <span className="hidden lg:inline">Customize Columns</span>
+                <span className="hidden lg:inline">Customize Filter</span>
                 <span className="lg:hidden">Columns</span>
                 <IconChevronDown />
               </Button>
@@ -772,10 +853,10 @@ function TableCellViewer({ item }: { item: z.infer<typeof bookingSchema> }) {
               </div>
             </div>
             <div className="flex flex-col gap-3">
-              <Label htmlFor="reviewer">Reviewer</Label>
+              <Label htmlFor="assignee">Assignee</Label>
               <Select defaultValue={item.attendant}>
-                <SelectTrigger id="reviewer" className="w-full">
-                  <SelectValue placeholder="Select a reviewer" />
+                <SelectTrigger id="assignee" className="w-full">
+                  <SelectValue placeholder="Select a assignee" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
@@ -797,4 +878,11 @@ function TableCellViewer({ item }: { item: z.infer<typeof bookingSchema> }) {
       </DrawerContent>
     </Drawer>
   )
+
+
+
+
+
+
+
 }
