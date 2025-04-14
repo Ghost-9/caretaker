@@ -106,18 +106,8 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
+import {bookingSchema} from '@/types/booking'
  
-export const bookingSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  phone: z.string(),
-  patient: z.string(),
-  plan: z.string(),
-  status: z.string(),
-  attendant: z.string(),
-  conditiontype: z.string(),
-  datestamp : z.string(),
-})
 
 // Create a separate component for the drag handle
 function DragHandle({ id }: { id: string }) {

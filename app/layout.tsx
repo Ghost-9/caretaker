@@ -1,9 +1,9 @@
 import './globals.css';
-import { AuthBroadcastProvider } from './providers';
+import {constants} from '@/app/config/constants';
 
 export const metadata = {
-  title: 'CareTaker - Your Trusted Healthcare Partner',
-  description: 'Empowering your health and uplifting your life with trusted healthcare services.',
+  title: constants.SITE_NAME,
+  description: constants.DESCRIPTION,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

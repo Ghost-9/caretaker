@@ -4,6 +4,7 @@ import WellnessSection from '../components/WellnessSection';
 import HealthcareSection from '../components/HealthcareSection';
 import FormSection from '../components/FormSection';
 import CostInfo from '@/components/cost-info';
+import Footer from '@/components/Footer';
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <HealthcareSection />
         <FormSection />
       </main>
+      <Footer />
     </div>
   );
 }

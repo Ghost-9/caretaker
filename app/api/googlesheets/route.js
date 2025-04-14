@@ -16,7 +16,7 @@ export async function GET() {
 
     const result = await sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
-      range: 'Bookings!A1:I',
+      range: 'Bookings!A1:J',
     });
 
     const rows = result.data.values || [];
@@ -30,7 +30,10 @@ export async function GET() {
       status: row[5] || '',
       attendant: row[6] || '',
       datestamp: row[7] || '',
-      conditiontype : row[8] || '',
+      conditiontype: row[8] || '',
+      totalcharge: row[9] || '',
+
+      
     }));
 
     return Response.json(bookings, { status: 200 });
