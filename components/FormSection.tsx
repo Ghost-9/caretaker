@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Award, Clock, Shield, Heart } from 'lucide-react';
 import React from 'react';
 
 const FormSection: React.FC = () => {
@@ -17,6 +18,34 @@ const FormSection: React.FC = () => {
     { number: "03", title: "Assign", description: "We assign a trained attendant" },
     { number: "04", title: "Support", description: "Real-time support, guaranteed replacement if needed" }
   ];
+
+  const service = [
+    {
+      title: "Personal Care Assistance",
+      note: "Compassionate help with daily activities including bathing, dressing, and mobility support",
+      rate: "Starting at $25/hour",
+      icon: <Heart className="text-rose-500" />
+    },
+    {
+      title: "Medication Management",
+      note: "Reliable reminders and assistance with prescribed medications and treatments",
+      rate: "Starting at $30/hour",
+      icon: <Clock className="text-emerald-500" />
+    },
+    {
+      title: "Specialized Memory Care",
+      note: "Trained support for individuals with Alzheimer's and other memory-related conditions",
+      rate: "Starting at $35/hour",
+      icon: <Shield className="text-purple-500" />
+    },
+    {
+      title: "Respite Care Services",
+      note: "Temporary relief for family caregivers with the same professional standards",
+      rate: "Starting at $28/hour",
+      icon: <Award className="text-amber-500" />
+    }
+  ];
+
 
   return (
     <main className="min-h-screen bg-white text-gray-800">
@@ -107,29 +136,74 @@ const FormSection: React.FC = () => {
 
       {/* Services Section */}
       <motion.section
-        className="p-8 bg-white"
+        className="p-8 bg-gradient-to-br from-blue-50 to-white rounded-3xl max-w-6xl mx-auto my-12 shadow-lg"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-semibold text-center mb-6">Tailored Care, Trusted Attendants</h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          {services.map((s, idx) => (
+        <div className="text-center mb-12">
+          <motion.h2 
+            className="text-4xl font-bold text-blue-800 mb-3"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Tailored Care, Trusted Attendants
+          </motion.h2>
+          <motion.div 
+            className="h-1 w-24 bg-blue-500 mx-auto rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: 96 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          />
+          <motion.p 
+            className="text-gray-600 mt-4 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Professional care services personalized to meet your unique needs with compassion and expertise
+          </motion.p>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {service.map((card, idx) => (
             <motion.div
               key={idx}
-              className="border rounded-2xl p-4 shadow-sm hover:shadow-md"
+              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 * idx }}
+              transition={{ duration: 0.5, delay: 0.1 * idx }}
               viewport={{ once: true }}
+              whileHover={{ y: -5 }}
             >
-              <h3 className="text-xl font-bold text-blue-700">{s.title}</h3>
-              <p className="text-sm mt-2">💡 {s.note}</p>
-              <p className="text-md font-semibold mt-2">💰 {s.rate}</p>
+              <div className="p-3 bg-blue-50 rounded-xl w-12 h-12 flex items-center justify-center mb-4">
+                {card.icon}
+              </div>
+              <h3 className="text-xl font-bold text-blue-700 mb-3">{card.title}</h3>
+              <p className="text-gray-600 mb-4 flex-grow">{card.note}</p>
+              <div className="bg-blue-50 py-3 px-4 rounded-xl text-blue-800 font-semibold mt-2">
+                {card.rate}
+              </div>
             </motion.div>
           ))}
         </div>
+
+        <motion.div 
+          className="mt-12 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
+            Schedule a Consultation
+          </button>
+        </motion.div>
       </motion.section>
 
       {/* How it Works */}
@@ -463,7 +537,7 @@ const FormSection: React.FC = () => {
   </div>
 </motion.section>
 
-      {/* Contact Section */}
+     
   </main>
   );
 };
