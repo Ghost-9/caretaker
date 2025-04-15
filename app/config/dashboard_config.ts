@@ -23,22 +23,22 @@ const SIDEBAR_MENU = {
     },
     navMain: [    {
         title: "Dashboard",
-        url: "#",
+        url: "main",
         icon: IconDashboard,
       },
       {
         title: "Attendants",
-        url: "#",
+        url: "attendants",
         icon: IconUsers,
         },
         {
             title: "Patients",
-            url: "#",
+            url: "patients",
             icon: IconMedicalCross,
           },
       {
         title: "Calendar",
-        url: "#",
+        url: "calendar",
         icon: IconCalendar,
       },
     ],
