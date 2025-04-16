@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Clock, Shield, Heart } from 'lucide-react';
-import React from 'react';
+import { Award, Clock, Shield, Heart, ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
 
 const FormSection: React.FC = () => {
   const services = [
@@ -46,6 +46,30 @@ const FormSection: React.FC = () => {
     }
   ];
 
+  // New state for custom dropdown
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("");
+  
+  const planOptions = [
+    { value: "hourly", label: "Hourly Care", description: "Flexible support for short-term needs" },
+    { value: "6hour", label: "6-Hour Care", description: "Perfect for morning/evening assistance" },
+    { value: "fullday", label: "Full-Day Care", description: "Complete coverage for the entire day" },
+    { value: "monthly", label: "Monthly Care", description: "Long-term care with discounted rates" },
+    { value: "custom", label: "Custom Plan", description: "Tailored to your specific requirements" }
+  ];
+
+  const handlePlanSelection = (value: string, label: string) => {
+    setSelectedPlan(value);
+    setIsDropdownOpen(false);
+    
+    // Show/hide time selection based on plan
+    const timeContainer = document.getElementById('timeSelectionContainer');
+    if (timeContainer && (value === 'hourly' || value === '6hour')) {
+      timeContainer.classList.remove('hidden');
+    } else if (timeContainer) {
+      timeContainer.classList.add('hidden');
+    }
+  };
 
   return (
     <main className="min-h-screen bg-white text-gray-800">
@@ -424,29 +448,59 @@ const FormSection: React.FC = () => {
         />
       </div>
       
+      {/* Enhanced animated dropdown */}
       <div className="space-y-1">
         <label htmlFor="plan" className="text-sm font-medium text-gray-700 block">Select Plan</label>
-        <motion.select 
-          whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
-          transition={{ duration: 0.2 }}
-          id="plan"
-          className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none appearance-none bg-white" 
-          onChange={(e) => {
-            const timeContainer = document.getElementById('timeSelectionContainer');
-            if (timeContainer && (e.target.value === 'hourly' || e.target.value === '6hour')) {
-              timeContainer.classList.remove('hidden');
-            } else if (timeContainer) {
-              timeContainer.classList.add('hidden');
-            }
-          }}
-        >
-          <option value="">Select your care plan</option>
-          <option value="hourly">Hourly</option>
-          <option value="6hour">6-Hour</option>
-          <option value="fullday">Full-Day</option>
-          <option value="monthly">Monthly</option>
-          <option value="custom">Custom</option>
-        </motion.select>
+        <div className="relative">
+          <motion.div 
+            className="bg-white border border-gray-300 rounded-lg p-3 flex justify-between items-center cursor-pointer relative"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            whileHover={{ boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+            transition={{ duration: 0.2 }}
+          >
+            <span className={selectedPlan ? "text-gray-800" : "text-gray-400"}>
+              {selectedPlan ? planOptions.find(option => option.value === selectedPlan)?.label : "Select your care plan"}
+            </span>
+            <motion.div
+              animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="text-gray-500" size={20} />
+            </motion.div>
+          </motion.div>
+          
+          {/* Dropdown options */}
+          <motion.div 
+            className="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ 
+              opacity: isDropdownOpen ? 1 : 0,
+              height: isDropdownOpen ? 'auto' : 0,
+              scale: isDropdownOpen ? 1 : 0.95,
+              transition: {
+                opacity: { duration: 0.2 },
+                height: { duration: 0.3 },
+                scale: { duration: 0.2 }
+              }
+            }}
+            exit={{ opacity: 0, height: 0 }}
+          >
+            {planOptions.map((option, idx) => (
+              <motion.div
+                key={option.value}
+                className="cursor-pointer p-3 rounded-md bg-white hover:bg-[#F2F8FF] transition-colors duration-200 border-b border-gray-100 last:border-b-0"
+                onClick={() => handlePlanSelection(option.value, option.label)}
+                whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * idx, duration: 0.2 }}
+              >
+                <div className="font-medium text-gray-800">{option.label}</div>
+                <div className="text-xs text-gray-500 mt-1">{option.description}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
       
       {/* Time selection that appears only for hourly and 6-hour options */}
