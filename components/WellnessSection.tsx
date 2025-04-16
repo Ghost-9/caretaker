@@ -257,7 +257,7 @@ const WellnessSection: React.FC = () => {
               <p className="text-blue-600 mb-2 font-medium relative z-10">Conquer your goals with expert help</p>
               <p className="text-gray-700 mb-6 relative z-10">
                 With our helpers, 90% of users report better family support during recovery. Available
-                6AM - 6PM for your convenience.
+                as per your convenience.
               </p>
               
               <motion.div 
@@ -269,7 +269,7 @@ const WellnessSection: React.FC = () => {
               >
                 <div className="flex items-center space-x-2">
                   <Clock size={20} className="text-blue-600" />
-                  <span className="text-xl font-medium text-gray-900">6AM - 6PM</span>
+                  <span className="text-xl font-medium text-gray-900">As per your need</span>
                 </div>
                 <div className="w-20 h-20 relative">
                   <Image
@@ -288,7 +288,7 @@ const WellnessSection: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Join Our Wellness Program
+                Register now
                 <ChevronRight size={18} className="ml-1" />
               </motion.a>
             </motion.div>

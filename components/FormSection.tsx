@@ -9,7 +9,7 @@ const FormSection: React.FC = () => {
     { title: "Hourly Care", note: "Ideal for hospital visits or temporary support", rate: "₹XYZ/hour" },
     { title: "6-Hour Care", note: "Perfect for morning/evening routine assistance", rate: "+20% premium of daily rate" },
     { title: "Half-Day & Full-Day", note: "Great for full hospital coverage", rate: "Market Rate (MRP)" },
-    { title: "Monthly & Long-Term", note: "15 Days: 10–15% Off\n30 Days: Up to 20% Off", rate: "Discounted Plans" },
+    { title: "Monthly & Long-Term", note: "15 Days: 10-15% Off\n30 Days: Up to 20% Off", rate: "Discounted Plans" },
   ];
 
   const steps = [
