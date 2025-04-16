@@ -21,9 +21,7 @@ import {
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import {
-  IconCheck,
   IconCheckbox,
-  IconChecks,
   IconChevronDown,
   IconChevronLeft,
   IconChevronRight,
@@ -31,7 +29,6 @@ import {
   IconChevronsRight,
   IconCircleCheckFilled,
   IconDotsVertical,
-  IconDrone,
   IconGripVertical,
   IconLayoutColumns,
   IconLoader,
@@ -54,7 +51,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
-import { toast } from "sonner"
 import { z } from "zod"
 
 import { useIsMobile } from "@/hooks/use-mobile"
@@ -110,9 +106,11 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
-import {attendantSchema, bookingSchema} from '@/types/booking'
-import { Check } from "lucide-react"
+import {attendantSchema, bookingSchema} from '@/types/booking' 
  
+
+
+
 
 // Create a separate component for the drag handle
 function DragHandle({ id }: { id: string }) {
@@ -149,7 +147,7 @@ const columns: ColumnDef<z.infer<typeof bookingSchema>>[] = [
             table.getIsAllPageRowsSelected() ||
             (table.getIsSomePageRowsSelected() ? "indeterminate" : false)
           }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          onCheckedChange={(value: any) => table.toggleAllPageRowsSelected(!!value)}
           aria-label="Select all"
         />
       </div>
@@ -158,7 +156,7 @@ const columns: ColumnDef<z.infer<typeof bookingSchema>>[] = [
       <div className="flex items-center justify-center">
         <Checkbox
           checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          onCheckedChange={(value: any) => row.toggleSelected(!!value)}
           aria-label="Select row"
         />
       </div>
@@ -414,13 +412,15 @@ export function DataTable({
 }: {
     data: z.infer<typeof bookingSchema>[]
     attendantBooking?: z.infer<typeof attendantSchema>[]
-}) {
+  }) {
+  
+
+  
   const [data, setData] = React.useState(() => initialData)
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]
   )
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [pagination, setPagination] = React.useState({
@@ -478,8 +478,7 @@ export function DataTable({
   return (
     <Tabs
       defaultValue="outline"
-      className="w-full flex-col justify-start gap-6"
-    >
+      className="w-full flex-col justify-start gap-6">
       <div className="flex items-center justify-between px-4 lg:px-6">
         <Label htmlFor="view-selector" className="sr-only">
           View
