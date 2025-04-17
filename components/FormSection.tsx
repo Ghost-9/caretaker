@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Award, Clock, Shield, Heart, ChevronDown } from 'lucide-react';
 import React, { useState } from 'react';
 
+
+
 const FormSection: React.FC = () => {
   const services = [
     { title: "Hourly Care", note: "Ideal for hospital visits or temporary support", rate: "₹XYZ/hour" },
@@ -49,6 +51,9 @@ const FormSection: React.FC = () => {
   // New state for custom dropdown
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("");
+  const [isConditionDropdownOpen, setIsConditionDropdownOpen] = useState(false);
+  const [selectedCondition, setSelectedCondition] = useState("");
+
   
   const planOptions = [
     { value: "hourly", label: "Hourly Care", description: "Flexible support for short-term needs" },
@@ -69,6 +74,16 @@ const FormSection: React.FC = () => {
     } else if (timeContainer) {
       timeContainer.classList.add('hidden');
     }
+  };
+  const conditionOptions = [
+    { value: "general", label: "General Care", description: "Basic assistance with daily activities and monitoring" },
+    { value: "intensive", label: "Intensive Care", description: "Higher level of medical monitoring and assistance" },
+    { value: "paralysis", label: "Paralysis Care", description: "Specialized care for patients with mobility limitations" }
+  ];
+  
+  const handleConditionSelection = (value: string, label: string) => {
+    setSelectedCondition(value);
+    setIsConditionDropdownOpen(false);
   };
 
   return (
@@ -437,16 +452,58 @@ const FormSection: React.FC = () => {
       </div>
       
       <div className="space-y-1">
-        <label htmlFor="condition" className="text-sm font-medium text-gray-700 block">Patient Type / Condition</label>
-        <motion.input 
-          whileFocus={{ scale: 1.01, boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
-          transition={{ duration: 0.2 }}
-          type="text" 
-          id="condition"
-          placeholder="Describe patient's condition briefly" 
-          className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none" 
-        />
-      </div>
+  <label htmlFor="condition" className="text-sm font-medium text-gray-700 block">Patient Type / Condition</label>
+  <div className="relative">
+    <motion.div 
+      className="bg-white border border-gray-300 rounded-lg p-3 flex justify-between items-center cursor-pointer relative"
+      onClick={() => setIsConditionDropdownOpen(!isConditionDropdownOpen)}
+      whileHover={{ boxShadow: "0 0 0 2px rgba(59, 130, 246, 0.3)" }}
+      transition={{ duration: 0.2 }}
+    >
+      <span className={selectedCondition ? "text-gray-800" : "text-gray-400"}>
+        {selectedCondition ? conditionOptions.find(option => option.value === selectedCondition)?.label : "Select patient condition"}
+      </span>
+      <motion.div
+        animate={{ rotate: isConditionDropdownOpen ? 180 : 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <ChevronDown className="text-gray-500" size={20} />
+      </motion.div>
+    </motion.div>
+    
+    {/* Dropdown options */}
+    <motion.div 
+      className="absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden"
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ 
+        opacity: isConditionDropdownOpen ? 1 : 0,
+        height: isConditionDropdownOpen ? 'auto' : 0,
+        scale: isConditionDropdownOpen ? 1 : 0.95,
+        transition: {
+          opacity: { duration: 0.2 },
+          height: { duration: 0.3 },
+          scale: { duration: 0.2 }
+        }
+      }}
+      exit={{ opacity: 0, height: 0 }}
+    >
+      {conditionOptions.map((option, idx) => (
+        <motion.div
+          key={option.value}
+          className="cursor-pointer p-3 rounded-md bg-white hover:bg-[#F2F8FF] transition-colors duration-200 border-b border-gray-100 last:border-b-0"
+          onClick={() => handleConditionSelection(option.value, option.label)}
+          whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 * idx, duration: 0.2 }}
+        >
+          <div className="font-medium text-gray-800">{option.label}</div>
+          <div className="text-xs text-gray-500 mt-1">{option.description}</div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</div>
       
       {/* Enhanced animated dropdown */}
       <div className="space-y-1">
