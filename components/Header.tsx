@@ -51,7 +51,7 @@ const Header: React.FC = () => {
 
       {/* Navigation */}
       <nav className="hidden md:flex space-x-8 text-gray-800 font-medium">
-        {['Home', 'Book', 'About', 'Story', 'Pricing'].map((item) => (
+        {['Home', 'About', 'Pricing', 'Story', 'Book'].map((item) => (
           <a 
             key={item} 
             href="#" 
@@ -104,7 +104,7 @@ const Header: React.FC = () => {
             exit={{ opacity: 0, y: -20, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {['Home', 'Book', 'About', 'Story', 'Pricing'].map((item) => (
+            {['Home', 'About', 'Pricing', 'Story', 'Book'].map((item) => (
               <a 
                 key={item} 
                 href="#" 
