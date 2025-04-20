@@ -4,8 +4,10 @@ import { useSearchParams } from 'next/navigation';
 import { Booking, Attendant } from '@/types/booking';
 import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
-import {DataTableAttendant} from "@/components/data-table-dummy"
- 
+import { DataTableAttendant } from "@/components/data-table-dummy"
+import CalendarView  from '@/components/ColorCodedCalendar'; // Adjust path
+
+
 
 
 const AdminView = ({ bookings, attendants }: { bookings: Booking[]; attendants: Attendant[]; }) => {
@@ -73,8 +75,9 @@ export function attendantsView({ attendants }: { attendants: Attendant[] }) {
 
 export function calendarView({bookings, attendants}: {bookings: Booking[], attendants: Attendant[]}) {
     return (
-        <div>
-        
-            <h2>Calendar View</h2>
-        </div>)
+      <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">My Event Calendar</h1>
+      <CalendarView  />
+    </div>
+    )
 }
