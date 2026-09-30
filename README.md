@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CareTaker
 
-## Getting Started
+<p align="center">
+  <strong>Modern healthcare and wellness digital concierge platform.</strong><br />
+  <em>A fast, responsive web experience built with Next.js and Tailwind CSS.</em>
+</p>
 
-First, run the development server:
+<p align="center">
+  <a href="https://caretaker-nine.vercel.app">Live Production Demo</a> •
+  <a href="#features">Platform Features</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#development">Development</a>
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Live Experience
+
+Experience the deployed application on Vercel:  
+👉 **[https://caretaker-nine.vercel.app](https://caretaker-nine.vercel.app)**
+
+---
+
+## Features
+
+* **Concierge Hero Experience:** Immersive entry point articulating personalized wellness and care services.
+* **Wellness & Clinical Tracks:** Modular presentation of holistic healthcare offerings and specialized programs.
+* **Intake & Contact Engine:** Responsive form section for seamless prospective client onboarding.
+* **Adaptive Mobile-First Design:** Fluid breakpoints delivering a native app feel on smartphones, tablets, and desktop displays.
+
+---
+
+## Tech Stack
+
+```
+Framework             Next.js (React 18+)
+Styling               Tailwind CSS
+Language              TypeScript / JavaScript
+Deployment            Vercel Edge Network
+Typography            Modern sans-serif typography system
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
+* Node.js 18.x or 20.x
+* npm / yarn / pnpm
 
-## Learn More
+### Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Clone the repository
+git clone https://github.com/Ghost-9/caretaker.git
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Enter project directory
+cd caretaker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Install dependencies
+npm install
 
-## Deploy on Vercel
+# Start development server
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [http://localhost:3000](http://localhost:3000) with your browser to view the application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+<p align="center">
+  <sub>Crafted by <a href="https://github.com/Ghost-9">Mayank Batra</a> • Hosted on Vercel</sub>
+</p>
