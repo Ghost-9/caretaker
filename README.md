@@ -6,6 +6,7 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Node.js-24.x-339933?logo=node.js&logoColor=white" alt="Node.js 24" />
   <img src="https://img.shields.io/badge/Next.js-15.x-black?logo=next.js&logoColor=white" alt="Next.js 15" />
   <img src="https://img.shields.io/badge/React-19.x-61DAFB?logo=react&logoColor=black" alt="React 19" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
@@ -18,11 +19,9 @@
 ## Visual Showcase
 
 <p align="center">
-  <img src="docs/screenshots/caretaker_hero.png" width="31%" alt="CareTaker Editorial Hero" />
+  <img src="docs/screenshots/caretaker_hero.png" width="48%" alt="CareTaker Editorial Hero" />
   &nbsp;
-  <img src="docs/screenshots/caretaker_disciplines.png" width="31%" alt="Care Disciplines Bento Grid" />
-  &nbsp;
-  <img src="docs/screenshots/caretaker_plans.png" width="31%" alt="Concierge Pricing & Protocol" />
+  <img src="docs/screenshots/caretaker_plans.png" width="48%" alt="Pastel Bento Protocol Showcase" />
 </p>
 
 ---
