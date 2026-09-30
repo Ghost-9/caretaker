@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
-import WellnessSection from '../components/WellnessSection';
-import HealthcareSection from '../components/HealthcareSection';
-import PlansSection from '../components/PlansSection';
+import EditorialHeadlineSection from '../components/EditorialHeadlineSection';
+import BentoShowcaseSection from '../components/BentoShowcaseSection';
 import FormSection from '../components/FormSection';
 import Footer from '../components/Footer';
 
@@ -17,13 +16,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-sand-100 text-stone-800 font-sans antialiased selection:bg-forest-900 selection:text-sand-100">
+    <div className="min-h-screen bg-[#FCFAF7] text-stone-800 font-sans antialiased selection:bg-stone-900 selection:text-white">
       <Header />
       <main>
         <HeroSection />
-        <WellnessSection />
-        <HealthcareSection />
-        <PlansSection onSelectPlan={handleSelectPlan} />
+        <EditorialHeadlineSection />
+        <BentoShowcaseSection onSelectPlan={handleSelectPlan} />
         <FormSection selectedPlan={selectedPlan} />
       </main>
       <Footer />

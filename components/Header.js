@@ -3,79 +3,74 @@
 import { useState } from "react";
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import StarburstIcon from './StarburstIcon';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md bg-sand-100/80 border-b border-stone-200/60">
+    <header className="sticky top-0 z-50 transition-all duration-300 backdrop-blur-md bg-[#FCFAF7]/90 border-b border-stone-200/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
-          {/* Brand Identity */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-xl bg-forest-900 text-sand-100 flex items-center justify-center font-editorial text-xl font-bold tracking-tight shadow-subtle transition-transform duration-300 group-hover:scale-105">
-              C
-            </div>
-            <div>
-              <span className="block text-xl font-semibold tracking-tight text-forest-950 font-sans">
-                CareTaker
-              </span>
-              <span className="block text-[10px] uppercase tracking-widest font-semibold text-stone-500">
-                Hospital & Home Concierge
-              </span>
-            </div>
+          {/* Brand Identity with Starburst */}
+          <Link href="/" className="flex items-center space-x-2.5 group">
+            <StarburstIcon className="w-7 h-7 text-amber-500 transition-transform duration-300 group-hover:rotate-45" fill="#F59E0B" />
+            <span className="text-2xl font-serif font-bold tracking-tight text-stone-900">
+              CareTaker
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
-              href="#disciplines" 
-              className="text-sm font-medium text-stone-600 hover:text-forest-900 transition-colors"
+              href="#home" 
+              className="text-xs font-semibold uppercase tracking-widest text-stone-700 hover:text-stone-950 transition-colors"
             >
-              Care Disciplines
-            </Link>
-            <Link 
-              href="#protocol" 
-              className="text-sm font-medium text-stone-600 hover:text-forest-900 transition-colors"
-            >
-              The Clinical Protocol
-            </Link>
-            <Link 
-              href="#plans" 
-              className="text-sm font-medium text-stone-600 hover:text-forest-900 transition-colors"
-            >
-              Care Plans
+              Home
             </Link>
             <Link 
               href="#about" 
-              className="text-sm font-medium text-stone-600 hover:text-forest-900 transition-colors"
+              className="text-xs font-semibold uppercase tracking-widest text-stone-700 hover:text-stone-950 transition-colors"
             >
-              Accreditation
+              About Us
+            </Link>
+            <Link 
+              href="#care" 
+              className="text-xs font-semibold uppercase tracking-widest text-stone-700 hover:text-stone-950 transition-colors"
+            >
+              Our Care
+            </Link>
+            <Link 
+              href="#specialties" 
+              className="text-xs font-semibold uppercase tracking-widest text-stone-700 hover:text-stone-950 transition-colors"
+            >
+              Specialties
+            </Link>
+            <Link 
+              href="#plans" 
+              className="text-xs font-semibold uppercase tracking-widest text-stone-700 hover:text-stone-950 transition-colors"
+            >
+              Concierge Plans
             </Link>
           </nav>
 
-          {/* Direct CTA */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-center space-x-1.5 text-xs font-semibold text-forest-800 bg-forest-50 px-3 py-1.5 rounded-full border border-forest-200">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Available in Jodhpur & Jaipur</span>
-            </div>
-            <Link 
+          {/* Direct CTA Button */}
+          <div className="hidden md:flex items-center">
+            <Link
               href="#inquire"
-              className="px-5 py-2.5 rounded-full bg-forest-900 text-sand-50 text-sm font-medium hover:bg-forest-800 transition-all duration-200 shadow-subtle hover:shadow-premium"
+              className="bg-stone-950 text-white rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider hover:bg-stone-800 transition-all shadow-sm hover:shadow"
             >
-              Inquire for Care
+              Our Services
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile hamburger button */}
+          <div className="flex md:hidden items-center">
             <button
-              type="button"
-              className="p-2 rounded-lg text-stone-700 hover:bg-stone-200/50"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle Navigation"
+              className="p-2 rounded-lg text-stone-700 hover:text-stone-900 hover:bg-stone-100 transition-colors"
+              aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -83,46 +78,53 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile slide-down menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-stone-200 bg-sand-100 px-6 py-6 space-y-4 shadow-elevated">
-          <Link
-            href="#disciplines"
-            className="block text-base font-medium text-stone-800 hover:text-forest-900"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Care Disciplines
-          </Link>
-          <Link
-            href="#protocol"
-            className="block text-base font-medium text-stone-800 hover:text-forest-900"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            The Clinical Protocol
-          </Link>
-          <Link
-            href="#plans"
-            className="block text-base font-medium text-stone-800 hover:text-forest-900"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Care Plans
-          </Link>
-          <Link
-            href="#about"
-            className="block text-base font-medium text-stone-800 hover:text-forest-900"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Accreditation
-          </Link>
-          <div className="pt-2">
+        <div className="md:hidden bg-[#FCFAF7] border-b border-stone-200 px-6 py-6 space-y-4">
+          <nav className="flex flex-col space-y-3">
+            <Link 
+              href="#home" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold uppercase tracking-widest text-stone-800 py-1"
+            >
+              Home
+            </Link>
+            <Link 
+              href="#about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold uppercase tracking-widest text-stone-800 py-1"
+            >
+              About Us
+            </Link>
+            <Link 
+              href="#care" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold uppercase tracking-widest text-stone-800 py-1"
+            >
+              Our Care
+            </Link>
+            <Link 
+              href="#specialties" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold uppercase tracking-widest text-stone-800 py-1"
+            >
+              Specialties
+            </Link>
+            <Link 
+              href="#plans" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold uppercase tracking-widest text-stone-800 py-1"
+            >
+              Concierge Plans
+            </Link>
             <Link
               href="#inquire"
-              className="block w-full text-center px-5 py-3 rounded-full bg-forest-900 text-sand-50 text-sm font-medium"
               onClick={() => setMobileMenuOpen(false)}
+              className="inline-block text-center bg-stone-950 text-white rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-wider mt-4"
             >
-              Inquire for Care
+              Our Services
             </Link>
-          </div>
+          </nav>
         </div>
       )}
     </header>
