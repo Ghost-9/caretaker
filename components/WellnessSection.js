@@ -1,5 +1,7 @@
 'use client';
 
+import { assetPath } from "@/lib/utils";
+
 import { motion } from 'framer-motion';
 import { HeartPulse, BedDouble, Home, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
@@ -64,7 +66,7 @@ export default function WellnessSection() {
                 {/* Visual Thumbnail */}
                 <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 bg-stone-200">
                   <Image
-                    src={disc.image}
+                    src={assetPath(disc.image)}
                     alt={disc.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"

@@ -1,5 +1,7 @@
 'use client';
 
+import { assetPath } from "@/lib/utils";
+
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import StarburstIcon from './StarburstIcon';
@@ -21,7 +23,7 @@ export default function EditorialHeadlineSection() {
             <span>Nourishing</span>{' '}
             <span className="inline-flex items-center align-middle mx-1.5 md:mx-3 h-8 sm:h-10 md:h-12 w-16 sm:w-20 md:w-24 rounded-full overflow-hidden border border-stone-300 shadow-sm relative -top-0.5">
               <Image 
-                src="/care-image1.jpg" 
+                src={assetPath("/care-image1.jpg")} 
                 alt="Compassionate care"
                 width={96}
                 height={48}
@@ -36,7 +38,7 @@ export default function EditorialHeadlineSection() {
             <span>Through Attentive</span>{' '}
             <span className="inline-flex items-center align-middle mx-1.5 md:mx-3 h-8 sm:h-10 md:h-12 w-16 sm:w-20 md:w-24 rounded-full overflow-hidden border border-stone-300 shadow-sm relative -top-0.5">
               <Image 
-                src="/wellness-image1.jpg" 
+                src={assetPath("/wellness-image1.jpg")} 
                 alt="Bedside presence"
                 width={96}
                 height={48}

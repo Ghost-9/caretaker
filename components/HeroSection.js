@@ -1,5 +1,7 @@
 'use client';
 
+import { assetPath } from "@/lib/utils";
+
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
@@ -12,7 +14,7 @@ export default function HeroSection() {
       <div className="relative w-full h-[540px] sm:h-[620px] md:h-[720px] lg:h-[780px]">
         {/* Landscape photo via next/image for automatic basePath resolution */}
         <Image
-          src="/alpine-hero.jpg"
+          src={assetPath("/alpine-hero.jpg")}
           alt="Tranquil alpine landscape"
           fill
           priority

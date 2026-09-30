@@ -1,5 +1,7 @@
 'use client';
 
+import { assetPath } from "@/lib/utils";
+
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
@@ -54,7 +56,7 @@ export default function BentoShowcaseSection({ onSelectPlan }) {
             <div className="relative mt-8 sm:mt-12 flex justify-center lg:justify-end">
               <div className="relative w-64 sm:w-80 md:w-88 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/80 transform hover:scale-[1.02] transition-transform duration-300">
                 <Image
-                  src="/caretaker-starter-pouch.jpg"
+                  src={assetPath("/caretaker-starter-pouch.jpg")}
                   alt="CareTaker Starter Apothecary Formulation"
                   width={380}
                   height={500}
@@ -97,7 +99,7 @@ export default function BentoShowcaseSection({ onSelectPlan }) {
 
               <div className="w-44 sm:w-48 shrink-0 rounded-2xl overflow-hidden shadow-lg border-2 border-white transform hover:scale-105 transition-transform duration-300">
                 <Image
-                  src="/caretaker-balance-pouch.jpg"
+                  src={assetPath("/caretaker-balance-pouch.jpg")}
                   alt="CareTaker Balance Formula"
                   width={240}
                   height={320}
@@ -136,7 +138,7 @@ export default function BentoShowcaseSection({ onSelectPlan }) {
 
               <div className="w-44 sm:w-48 shrink-0 rounded-2xl overflow-hidden shadow-lg border-2 border-white transform hover:scale-105 transition-transform duration-300">
                 <Image
-                  src="/caretaker-performance-pouch.jpg"
+                  src={assetPath("/caretaker-performance-pouch.jpg")}
                   alt="CareTaker Performance Formula"
                   width={240}
                   height={320}

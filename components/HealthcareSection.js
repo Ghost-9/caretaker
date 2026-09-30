@@ -1,5 +1,7 @@
 'use client';
 
+import { assetPath } from "@/lib/utils";
+
 import { motion } from 'framer-motion';
 import { ShieldCheck, UserCheck, RefreshCw, Smartphone, Stethoscope } from 'lucide-react';
 import Image from 'next/image';
@@ -94,7 +96,7 @@ export default function HealthcareSection() {
               {/* Primary Image */}
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-elevated border border-stone-200 bg-stone-100">
                 <Image
-                  src="/healthcare-image1.jpg"
+                  src={assetPath("/healthcare-image1.jpg")}
                   alt="Clinical care and attendant support"
                   fill
                   className="object-cover"
