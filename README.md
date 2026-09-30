@@ -1,110 +1,103 @@
-# CareTaker · Hospital Bedside & Convalescence Concierge
+# CareTaker
 
-<p align="center">
-  <strong>An accredited healthcare concierge web platform designed with high-end agency rigor.</strong><br />
-  <em>Coordinating vetted hospital bedside attendants, nursing scholars, and post-operative home recovery across premier medical networks.</em>
-</p>
+A modern healthcare web application for booking vetted hospital bedside attendants, nursing scholars, and post-operative home recovery services.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Node.js-24.x-339933?logo=node.js&logoColor=white" alt="Node.js 24" />
-  <img src="https://img.shields.io/badge/Next.js-15.x-black?logo=next.js&logoColor=white" alt="Next.js 15" />
-  <img src="https://img.shields.io/badge/React-19.x-61DAFB?logo=react&logoColor=black" alt="React 19" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Deployment-Vercel-black?logo=vercel&logoColor=white" alt="Vercel" />
-</p>
+[![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.x-black?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.x-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## Visual Showcase
+## Live Links
+
+* **GitHub Pages:** [https://ghost-9.github.io/caretaker/](https://ghost-9.github.io/caretaker/)
+* **Vercel:** [https://caretaker-nine.vercel.app](https://caretaker-nine.vercel.app)
+
+---
+
+## Screenshots
 
 <p align="center">
-  <img src="docs/screenshots/caretaker_hero.png" width="48%" alt="CareTaker Editorial Hero" />
+  <img src="docs/screenshots/hero.png" width="49%" alt="Landing page hero" />
   &nbsp;
-  <img src="docs/screenshots/caretaker_plans.png" width="48%" alt="Pastel Bento Protocol Showcase" />
+  <img src="docs/screenshots/care-plans.png" width="49%" alt="Care plans bento grid" />
 </p>
 
 ---
 
-## Live Production Experience
+## Overview
 
-* 🌐 **Live GitHub Pages:** [https://ghost-9.github.io/caretaker/](https://ghost-9.github.io/caretaker/)
-* ⚡ **Live Vercel Preview:** [https://caretaker-nine.vercel.app](https://caretaker-nine.vercel.app)
+CareTaker connects families with verified, non-clinical bedside attendants and convalescence assistants when family members cannot be present at the hospital or during home recovery.
 
----
+The web app is built with Next.js 15 (App Router), React 19, and Tailwind CSS. It features an editorial aesthetic with warm neutrals, responsive bento card layouts, and an intake form that coordinates directly with hospital dispatchers.
 
-## Agency Design Philosophy
-
-CareTaker moves away from generic, cluttered healthcare templates in favor of calm, editorial dignity:
-* **Curated Editorial Palette:** Warm alabaster (`#FAF8F5`) and deep forest emerald (`#0E2E25`) punctuated by subtle sand borders and bronze accents.
-* **Typographic Hierarchy:** High-contrast editorial display serif pairings (`Playfair Display`) alongside modern grotesque sans-serif (`Inter` / `Plus Jakarta Sans`) for seamless readability.
-* **Tactile Micro-Interactions:** Subtle floating glassmorphism panels, balanced whitespace, and purposeful framer-motion transitions.
-* **Patient Dignity First:** Clinical framing centered on human bedside presence, non-clinical patient mobility, family peace of mind, and verified credentials.
+### Key Highlights
+* **Editorial Layout:** Clean typography, soft earth tones, and responsive bento cards presenting care tiers clearly.
+* **Care Tiers:** 4 structured service protocols (Starter, Balance, Performance, and Premier 24/7 care).
+* **Direct Intake Form:** Validated client-side booking intake that routes patient requirements directly to coordinators.
+* **Dual Deployment Pipeline:** Pre-configured for both Vercel serverless deployments and static export to GitHub Pages.
 
 ---
 
-## Architectural Systems
+## Project Structure
 
 ```
 caretaker/
 ├── app/
-│   ├── globals.css            # Agency design tokens, typography, glassmorphism
-│   ├── layout.tsx             # Root document container & SEO metadata
-│   └── page.tsx               # Reactive orchestration of page sections
+│   ├── globals.css              # Global tokens, typography, and styling
+│   ├── layout.tsx               # Root document layout and SEO metadata
+│   └── page.tsx                 # Main landing page
 ├── components/
-│   ├── Header.js              # Frosted floating navigation with city dispatch badge
-│   ├── HeroSection.js         # Editorial headline, proof metrics & interactive card
-│   ├── WellnessSection.js     # Care Disciplines bento grid (Hospital, Home, Senior)
-│   ├── HealthcareSection.js   # 4-Pillar Clinical Care Protocol & standards
-│   ├── PlansSection.js        # Transparent concierge tiers (Hourly, 12H, 24/7)
-│   ├── FormSection.js         # Reactive booking intake with instant reference ID
-│   └── Footer.js              # Institutional brand credibility & legal notices
-└── pages/
-    ├── admin.js               # Administrative booking management & CSV export
-    └── api/
-        ├── book.js            # Inpatient intake webhook (Twilio & Google Sheets)
-        └── googlesheets.js    # Data retrieval for authenticated staff
+│   ├── Header.js                # Top navigation and mobile drawer
+│   ├── HeroSection.js           # Hero banner with soft gradient fade
+│   ├── EditorialHeadlineSection.js # Editorial headline with inline imagery
+│   ├── BentoShowcaseSection.js  # Care plan cards (Starter, Balance, etc.)
+│   ├── FormSection.js           # Patient intake consultation form
+│   ├── Footer.js                # Site footer, legal notes, contact details
+│   └── StarburstIcon.js         # Vector emblem
+├── pages/
+│   ├── admin.js                 # Admin intake overview portal
+│   └── api/
+│       ├── book.js              # Booking handler (webhooks / spreadsheet sync)
+│       └── googlesheets.js      # Sheets integration
+└── docs/
+    └── screenshots/             # Production screenshots
 ```
 
 ---
 
-## Platform Features
+## Getting Started
 
-1. **Bedside In-Patient Guardianship:** Dedicated round-the-clock observation in hospital wards, fluid intake logging, and nursing staff coordination.
-2. **Transitional Home Convalescence:** Safe transfers, medication reminders, and fall prevention during vulnerable post-discharge weeks.
-3. **Specialized Senior Companionship:** Empathetic, unhurried presence for dementia and chronic care support.
-4. **Interactive Intake Engine:** Direct intake with schedule selection, validation, and real-time coordinator dispatch.
-5. **Hospital Staff Administration:** Built-in `/admin` dashboard with search filtering, status tagging, and one-click CSV export.
+### Prerequisites
+* Node.js 24.x (recommended) or 20.x+
+* npm, pnpm, or yarn
 
----
-
-## Local Development
-
+### Installation
 ```bash
-# Clone repository
 git clone https://github.com/Ghost-9/caretaker.git
-
-# Enter project directory
 cd caretaker
-
-# Install dependencies
 npm install
-
-# Start local development server
-npm run dev
-
-# Build production bundle
-npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+### Development
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the site in your browser.
+
+### Production Build
+```bash
+# Standard Vercel / server build
+npm run build
+
+# Static export (for GitHub Pages)
+DEPLOY_TARGET=gh-pages npm run build
+```
 
 ---
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-<div align="center">
-  <sub>Crafted by <a href="https://github.com/Ghost-9">Mayank Batra</a></sub>
-</div>
