@@ -1,12 +1,14 @@
 import type { NextConfig } from "next";
 
+const isGithubPages = process.env.DEPLOY_TARGET === "gh-pages";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  // output: "export",
+  output: "export",
+  basePath: isGithubPages ? "/caretaker" : "",
+  assetPrefix: isGithubPages ? "/caretaker/" : "",
   images: {
     unoptimized: true,
   },
 };
-module.exports = nextConfig;
-export default nextConfig;
 
+export default nextConfig;

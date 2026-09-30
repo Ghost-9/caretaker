@@ -15,10 +15,22 @@
 
 ---
 
+## Visual Showcase
+
+<p align="center">
+  <img src="docs/screenshots/caretaker_hero.png" width="31%" alt="CareTaker Editorial Hero" />
+  &nbsp;
+  <img src="docs/screenshots/caretaker_disciplines.png" width="31%" alt="Care Disciplines Bento Grid" />
+  &nbsp;
+  <img src="docs/screenshots/caretaker_plans.png" width="31%" alt="Concierge Pricing & Protocol" />
+</p>
+
+---
+
 ## Live Production Experience
 
-Experience the live deployed web application on Vercel:  
-👉 **[https://caretaker-nine.vercel.app](https://caretaker-nine.vercel.app)**
+* 🌐 **Live GitHub Pages:** [https://ghost-9.github.io/caretaker/](https://ghost-9.github.io/caretaker/)
+* ⚡ **Live Vercel Preview:** [https://caretaker-nine.vercel.app](https://caretaker-nine.vercel.app)
 
 ---
 
