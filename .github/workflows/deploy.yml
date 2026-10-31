@@ -5,31 +5,46 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# This workflow regenerates the `gh-pages` branch that GitHub Pages serves (build_type:
+# legacy, source: gh-pages). It failed twice with:
+#   fatal: unable to access 'https://github.com/Ghost-9/caretaker.git/': 403
+# because it pushed with GITHUB_TOKEN while declaring no permissions at all, so the token
+# was read-only. `contents: write` is the only permission the push needs; nothing else is
+# granted. Actions are pinned to commit SHAs so a moved tag cannot change what runs here.
+permissions:
+  contents: write
+
+# One deploy at a time, and never cancel one mid-push: a half-written gh-pages branch is
+# worse than a queued run.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-        
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 24
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Build and Export
         run: DEPLOY_TARGET=gh-pages npm run build
-        
+
       - name: Add .nojekyll file
         run: touch out/.nojekyll
-        
+
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4
         with:
           branch: gh-pages
           folder: out
